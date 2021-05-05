@@ -17,8 +17,8 @@ const basicWrapper = async (req, res, controller) => {
 
 router.get("/lands", getLands);
 router.get("/lands/:lid", getLandById);
-router.delete("/delete/:lid", deleteLandById);
-router.put("/update/:lid", updateLandById);
+router.delete("/delete/:lid", checkToken, deleteLandById);
+router.put("/update/:lid", checkToken, updateLandById);
 router.post("/create-land", checkToken, createLand)
 
 module.exports = router;
