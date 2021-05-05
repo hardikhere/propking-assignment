@@ -4,12 +4,14 @@ const { json } = require("express")
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const { LandRoutes, UserRoutes } = require("./routes/index");
+const cors = require("cors");
 
 (function () {
     const app = express();
     const BaseAPI = "/api/v1";
     app.use(morgan(process.env.NODE_ENV || "dev"));
     app.use(json());
+    app.use(cors());
     app.use(BaseAPI, LandRoutes);
     app.use(BaseAPI, UserRoutes);
     function connect_db() {
