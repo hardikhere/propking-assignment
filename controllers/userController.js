@@ -1,8 +1,8 @@
 const User = require("../models/User");
 const { jwtGenerator } = require("../utils/common");
 
-const login =  (req, res) => {
-    User.findOne({ email: req.body.email },async function (err, user) {
+const login = (req, res) => {
+    User.findOne({ email: req.body.email }, async function (err, user) {
         if (user === null) {
             return res.status(400).json({
                 message: "User not found.",
@@ -15,7 +15,8 @@ const login =  (req, res) => {
                 return res.status(201).json({
                     message: "User Logged In",
                     success: true,
-                    token
+                    token,
+                    data: user
                 })
             }
             else {
